@@ -1,0 +1,32 @@
+{
+  "minilm": {
+    "n_long_ctx": 160,
+    "right": {
+      "top1_all": 0.768,
+      "top10_all": 0.9,
+      "top1_long": 0.68125,
+      "top10_long": 0.85625
+    },
+    "left": {
+      "top1_all": 0.78,
+      "top10_all": 0.901,
+      "top1_long": 0.75625,
+      "top10_long": 0.8625
+    }
+  },
+  "bge-small": {
+    "n_long_ctx": 17,
+    "right": {
+      "top1_all": 0.728,
+      "top10_all": 0.858,
+      "top1_long": 0.7058823529411765,
+      "top10_long": 0.9411764705882353
+    },
+    "left": {
+      "top1_all": 0.728,
+      "top10_all": 0.858,
+      "top1_long": 0.7058823529411765,
+      "top10_long": 0.9411764705882353
+    }
+  }
+}

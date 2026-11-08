@@ -1,0 +1,12 @@
+{
+  "n": 2000,
+  "dim": 1152,
+  "swap_invariant": true,
+  "finite": true,
+  "diff_norm_min": 0.0,
+  "diff_norm_mean": 0.9994497895240784,
+  "n_diff_norm_lt_eps": 1,
+  "n_diff_norm_lt_1e2": 1,
+  "groups": 1965,
+  "storage_mb": 8.7890625
+}

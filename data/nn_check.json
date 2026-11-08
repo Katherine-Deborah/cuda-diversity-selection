@@ -1,0 +1,20 @@
+{
+  "minilm": {
+    "ctx_nn_sim_mean": 0.5322896838188171,
+    "own_resp_top1": 0.768,
+    "own_resp_top10": 0.9,
+    "chosen_vs_rejected_sim": 0.4828924536705017,
+    "chosen_vs_random_sim": 0.03040068969130516,
+    "n_long_ctx": 160,
+    "long_ctx_cos_left_vs_right": 0.8469833135604858
+  },
+  "bge-small": {
+    "ctx_nn_sim_mean": 0.7582957148551941,
+    "own_resp_top1": 0.728,
+    "own_resp_top10": 0.858,
+    "chosen_vs_rejected_sim": 0.721962034702301,
+    "chosen_vs_random_sim": 0.47104260325431824,
+    "n_long_ctx": 17,
+    "long_ctx_cos_left_vs_right": 0.9310930371284485
+  }
+}

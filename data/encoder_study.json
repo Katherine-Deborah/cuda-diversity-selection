@@ -1,0 +1,42 @@
+{
+  "minilm": {
+    "max_seq_length": 256,
+    "dim": 384,
+    "context": {
+      "tok_mean": 134.961,
+      "tok_p95": 415.04999999999995,
+      "tok_max": 886,
+      "trunc_rate": 0.16
+    },
+    "response": {
+      "tok_mean": 70.026,
+      "tok_p95": 201.0,
+      "tok_max": 629,
+      "trunc_rate": 0.009
+    },
+    "embed_s": 7.540718078613281,
+    "texts_per_s": 397.8400954291733,
+    "peak_gpu_mb": 399.62060546875,
+    "finite": true
+  },
+  "bge-small": {
+    "max_seq_length": 512,
+    "dim": 384,
+    "context": {
+      "tok_mean": 134.961,
+      "tok_p95": 415.04999999999995,
+      "tok_max": 886,
+      "trunc_rate": 0.017
+    },
+    "response": {
+      "tok_mean": 70.026,
+      "tok_p95": 201.0,
+      "tok_max": 629,
+      "trunc_rate": 0.001
+    },
+    "embed_s": 16.147353887557983,
+    "texts_per_s": 185.7889547036923,
+    "peak_gpu_mb": 815.41796875,
+    "finite": true
+  }
+}
