@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <cfloat>
+#include <chrono>
 
 // Check CUDA calls so errors are easier to find.
 void check_cuda(cudaError_t error) {
@@ -231,29 +232,43 @@ std::vector<int> kcenter_cuda(
     return selected_indices;
 }
 
-int main() {
-    // Small dataset to check against the Python reference.
-    const int N = 5;
-    const int dim = 2;
-    const int k = 3;
 
-    std::vector<float> X = {
-        0.0f, 0.0f,
-        1.0f, 0.0f,
-        0.0f, 1.0f,
-        5.0f, 5.0f,
-        6.0f, 5.0f
-    };
+int main(int argc, char** argv) {
+    const int N = argc > 1 ? std::stoi(argv[1]) : 2000;
+    const int dim = argc > 2 ? std::stoi(argv[2]) : 1152;
+    const int k = argc > 3 ? std::stoi(argv[3]) : 100;
 
-    std::vector<int> selected = kcenter_cuda(X, N, dim, k);
-
-    std::cout << "CUDA selected indices: ";
-
-    for (int index : selected) {
-        std::cout << index << " ";
+    if (N <= 0 || dim <= 0 || k <= 0 || k > N) {
+        std::cerr << "Invalid benchmark dimensions\n";
+        return 1;
     }
 
-    std::cout << std::endl;
+    std::vector<float> X(static_cast<size_t>(N) * dim);
+
+    // Generate the same input data as the CPU benchmark.
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < dim; ++j) {
+            X[static_cast<size_t>(i) * dim + j] =
+                static_cast<float>(
+                    ((static_cast<size_t>(i) * 131 +
+                      static_cast<size_t>(j) * 17) % 1009)
+                ) / 1009.0f;
+        }
+    }
+
+    // Time the complete CUDA selection, including transfers.
+    auto begin = std::chrono::steady_clock::now();
+    std::vector<int> selected = kcenter_cuda(X, N, dim, k);
+    check_cuda(cudaDeviceSynchronize());
+    auto end = std::chrono::steady_clock::now();
+
+    double seconds = std::chrono::duration<double>(end - begin).count();
+
+    std::cout << "CUDA N=" << N << " D=" << dim << " k=" << k << "\n";
+    std::cout << "Time: " << seconds << " seconds\n";
+    std::cout << "Selected indices:";
+    for (int index : selected) std::cout << " " << index;
+    std::cout << "\n";
 
     return 0;
 }

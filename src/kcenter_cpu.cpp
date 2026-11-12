@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include <algorithm>
 #include <cstddef>
+#include <chrono>
+#include <cstdlib>
 
 using namespace std;
 
@@ -96,35 +98,38 @@ vector<size_t> kcenter_cpu(
     return selected;
 }
 
-int main() {
-    // Small example for correctness testing.
-    const size_t N = 5;
-    const size_t dim = 2;
-    const size_t k = 3;
 
-    vector<float> X = {
-        0.0f, 0.0f,
-        1.0f, 0.0f,
-        0.0f, 1.0f,
-        5.0f, 5.0f,
-        6.0f, 5.0f
-    };
+int main(int argc, char** argv) {
+    // Use the same generated data for CPU and CUDA benchmarks.
+    const size_t N = argc > 1 ? std::stoull(argv[1]) : 2000;
+    const size_t dim = argc > 2 ? std::stoull(argv[2]) : 1152;
+    const size_t k = argc > 3 ? std::stoull(argv[3]) : 100;
 
-    try {
-        vector<size_t> selected = kcenter_cpu(X, N, dim, k);
-
-        cout << "Selected indices: ";
-
-        for (size_t index : selected) {
-            cout << index << " ";
-        }
-
-        cout << endl;
-
-    } catch (const exception& e) {
-        cerr << "Error: " << e.what() << endl;
+    if (N == 0 || dim == 0 || k == 0 || k > N) {
+        std::cerr << "Invalid benchmark dimensions\n";
         return 1;
     }
 
+    std::vector<float> X(N * dim);
+
+    // Deterministic float32 values; no random-number library needed.
+    for (size_t i = 0; i < N; ++i) {
+        for (size_t j = 0; j < dim; ++j) {
+            X[i * dim + j] =
+                static_cast<float>(((i * 131 + j * 17) % 1009)) / 1009.0f;
+        }
+    }
+
+    auto begin = std::chrono::steady_clock::now();
+    std::vector<size_t> selected = kcenter_cpu(X, N, dim, k);
+    auto end = std::chrono::steady_clock::now();
+
+    double seconds = std::chrono::duration<double>(end - begin).count();
+
+    std::cout << "CPU N=" << N << " D=" << dim << " k=" << k << "\n";
+    std::cout << "Time: " << seconds << " seconds\n";
+    std::cout << "Selected indices:";
+    for (size_t index : selected) std::cout << " " << index;
+    std::cout << "\n";
     return 0;
 }
