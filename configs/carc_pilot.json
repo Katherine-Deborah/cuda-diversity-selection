@@ -1,0 +1,67 @@
+{
+  "source_commit": "a9c1e5eb3aaf29ca98a97504fb1bb808bb5c5b3d",
+  "source_sha256": {
+    "src/parse.py": "b593c157abb4a5de8d6ee60d6c7e8275bb34fa24b1f46a46747505234f01bc6a",
+    "src/embed.py": "c30ba4bee989a7389342ddf5d4b1a0efaafee27c6d269e6470668d93aa28e1af",
+    "src/features.py": "0ae7887880c62369ab01ec4e0b556cd8940a7bbbcde55ee9314d7d58bbad3a8e",
+    "src/normalize.py": "49604809ff9bacdb3fe844ec8d2164a083731e288708af6e1cef733efb9426dd",
+    "src/kcenter.py": "3492a8a61aa87e71a8909834ac1a449b0db11bf69b471667eaea6dbf7cf353ea",
+    "src/reward.py": "d01e99f95acf006005ccd5917bb44905abec4cf861f5dd419e0e4a4b472a3388",
+    "data/pilot_ids.json": "2d678ae9ecacb7072a9d5dabde568eebc9810e59a7d60bf56ab395b62ab1fc19",
+    "data/parse_report.json": "b8a9bcea8930535829eae21c57510277b2f82c56d980a60c399d3aebd3ff4c33"
+  },
+  "dataset": {
+    "name": "Anthropic/hh-rlhf",
+    "revision": "09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa"
+  },
+  "encoder": {
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "max_seq_length": 256,
+    "embedding_dimension": 384,
+    "batch_size": 64,
+    "revision_caveat": "Revision recorded in Katherine plan; not pinned during her original runs."
+  },
+  "reward": {
+    "name": "distilbert/distilbert-base-uncased",
+    "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+    "max_seq_length": 256,
+    "reply_token_cap": 128,
+    "microbatch_pairs": 8,
+    "effective_batch_pairs": 32,
+    "lr": 2e-05,
+    "precision": "float32",
+    "optimizer": "AdamW defaults (weight_decay=0.01, betas=[0.9,0.999], eps=1e-8)"
+  },
+  "presets": {
+    "reproduce": {
+      "pool_size": 2000,
+      "budget": 0.1,
+      "epochs": 3,
+      "validation_size": 1000,
+      "methods": [
+        "random",
+        "kcenter"
+      ]
+    },
+    "signal": {
+      "pool_size": 2000,
+      "budget": 1.0,
+      "epochs": 2,
+      "validation_size": 1000,
+      "methods": [
+        "full_pool"
+      ]
+    },
+    "main": {
+      "pool_size": 20000,
+      "budget": 0.1,
+      "epochs": 2,
+      "validation_size": 1000,
+      "methods": [
+        "random",
+        "kcenter"
+      ]
+    }
+  }
+}
