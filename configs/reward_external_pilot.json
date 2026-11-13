@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "epochs": 1,
+  "training_seed": 0,
+  "budget": 200,
+  "save_checkpoints": true,
+  "reward": {
+    "max_seq_length": 256,
+    "reply_token_cap": 128,
+    "microbatch_pairs": 8,
+    "effective_batch_pairs": 32,
+    "lr": 0.00002
+  },
+  "inputs": {
+    "pool_ids": "runs/reproduce_seed0_20261110T020718Z_27763ad0/pool_ids.json",
+    "validation_ids": "runs/reproduce_seed0_20261110T020718Z_27763ad0/validation_ids.json",
+    "selected_ids": {
+      "random": "runs/reproduce_seed0_20261110T020718Z_27763ad0/random_selected_ids.json",
+      "kcenter": "runs/reproduce_seed0_20261110T020718Z_27763ad0/kcenter_selected_ids.json"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "state_dict": "random_best.pt",
+  "state_dict_sha256": "a23fd3e00ef06ff28a466efa775c97b3ca70ddd27788e4f1f18bd037842c2456",
+  "reward": {
+    "name": "distilbert/distilbert-base-uncased",
+    "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+    "max_seq_length": 256,
+    "reply_token_cap": 128,
+    "microbatch_pairs": 8,
+    "effective_batch_pairs": 32,
+    "lr": 2e-05,
+    "precision": "float32",
+    "optimizer": "AdamW defaults (weight_decay=0.01, betas=[0.9,0.999], eps=1e-8)"
+  },
+  "training_seed": 0,
+  "checkpoint_policy": "lowest validation loss among trained epochs",
+  "best_validation_epoch": {
+    "epoch": 1,
+    "acc": 0.5070000290870667,
+    "loss": 0.6925278902053833
+  },
+  "selected_ids_sha256": "33add80931b9dbc400b43b9d76d4b66d7740c0dfd94b987053757f4617d1404e",
+  "ordered_pool_ids_sha256": "2d678ae9ecacb7072a9d5dabde568eebc9810e59a7d60bf56ab395b62ab1fc19",
+  "ordered_validation_ids_sha256": "ba84d5ccc3bb626e5b29dbfdc5dd259732e80b77a7b38a18a0d61ec138d0636b",
+  "resolved_config_sha256": "30a662e2fd2f31728e8e9c443104274feeff1a312e42b0822e2fa809c6e435aa"
+}

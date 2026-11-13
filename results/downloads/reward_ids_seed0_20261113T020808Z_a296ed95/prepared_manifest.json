@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "source_commit_reviewed": "a9c1e5eb3aaf29ca98a97504fb1bb808bb5c5b3d",
+  "source_sha256": {
+    "src/parse.py": "b593c157abb4a5de8d6ee60d6c7e8275bb34fa24b1f46a46747505234f01bc6a",
+    "src/embed.py": "c30ba4bee989a7389342ddf5d4b1a0efaafee27c6d269e6470668d93aa28e1af",
+    "src/features.py": "0ae7887880c62369ab01ec4e0b556cd8940a7bbbcde55ee9314d7d58bbad3a8e",
+    "src/normalize.py": "49604809ff9bacdb3fe844ec8d2164a083731e288708af6e1cef733efb9426dd",
+    "src/kcenter.py": "3492a8a61aa87e71a8909834ac1a449b0db11bf69b471667eaea6dbf7cf353ea",
+    "src/reward.py": "d01e99f95acf006005ccd5917bb44905abec4cf861f5dd419e0e4a4b472a3388",
+    "data/pilot_ids.json": "2d678ae9ecacb7072a9d5dabde568eebc9810e59a7d60bf56ab395b62ab1fc19",
+    "data/parse_report.json": "b8a9bcea8930535829eae21c57510277b2f82c56d980a60c399d3aebd3ff4c33"
+  },
+  "dataset": {
+    "name": "Anthropic/hh-rlhf",
+    "revision": "09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa"
+  },
+  "encoder": {
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "max_seq_length": 256,
+    "embedding_dimension": 384,
+    "batch_size": 64,
+    "revision_caveat": "Revision recorded in Katherine plan; not pinned during her original runs."
+  },
+  "reward": {
+    "name": "distilbert/distilbert-base-uncased",
+    "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+    "max_seq_length": 256,
+    "reply_token_cap": 128,
+    "microbatch_pairs": 8,
+    "effective_batch_pairs": 32,
+    "lr": 2e-05,
+    "precision": "float32",
+    "optimizer": "AdamW defaults (weight_decay=0.01, betas=[0.9,0.999], eps=1e-8)"
+  },
+  "snapshots": {
+    "encoder": "/scratch1/mgunasek/ee451-cuda-diversity/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "reward": "/scratch1/mgunasek/ee451-cuda-diversity/huggingface/hub/models--distilbert--distilbert-base-uncased/snapshots/12040accade4e8a0f71eabdb258fecc2e7e948be"
+  },
+  "parse_report": {
+    "counts": {
+      "train": 133535,
+      "val": 16490,
+      "test": 16626
+    },
+    "groups": {
+      "train": 49511,
+      "val": 6121,
+      "test": 6157
+    },
+    "dropped": {
+      "echoes_user": 1392,
+      "context_mismatch": 329,
+      "empty_response": 194,
+      "identical_responses": 775,
+      "extra_turn_in_response": 11
+    },
+    "cross_split_group_overlap": {
+      "train&val": 0,
+      "train&test": 0,
+      "val&test": 0
+    }
+  },
+  "file_sha256": {
+    "train.jsonl": "d96c93c0705363dbdf3b425a327e2c1659f061e3d708c7cc4bdffb4ec4b5f691",
+    "val.jsonl": "f297c2c0d6568f329f426a9fae46bf07a75610aa31700803f605c9a94a65a8b1",
+    "test.jsonl": "0e978ffb2a3599bf4ddbb47a9b62e4f33a2d05d0bf8b4d9ed224faaa2b31e0fb"
+  },
+  "original_pilot_ids_verified": true,
+  "prepare_stages": [
+    {
+      "stage": "dataset_load_download_and_arrow",
+      "status": "ok",
+      "seconds": 4.100681820884347,
+      "process_peak_rss_mib_so_far": 298.33203125
+    },
+    {
+      "stage": "parse_filter_split_write",
+      "status": "ok",
+      "seconds": 7.029706456698477,
+      "process_peak_rss_mib_so_far": 539.390625
+    },
+    {
+      "stage": "encoder_download_or_cache",
+      "status": "ok",
+      "seconds": 1.4720243085175753,
+      "process_peak_rss_mib_so_far": 539.40234375
+    },
+    {
+      "stage": "reward_download_or_cache",
+      "status": "ok",
+      "seconds": 2.91886346321553,
+      "process_peak_rss_mib_so_far": 539.40234375
+    }
+  ],
+  "packages": {
+    "torch": "2.14.1+cu126",
+    "numpy": "1.26.4",
+    "transformers": "4.46.3",
+    "sentence-transformers": "3.3.1",
+    "datasets": "3.1.0",
+    "huggingface-hub": "0.26.2",
+    "tokenizers": "0.20.3",
+    "safetensors": "0.8.0",
+    "pyarrow": "17.0.0"
+  },
+  "note": "Katherine opening-prompt pooled split. Not Mohan original official-test split."
+}
