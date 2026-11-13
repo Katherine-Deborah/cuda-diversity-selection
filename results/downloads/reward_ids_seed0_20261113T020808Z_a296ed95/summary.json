@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "runner": "reward_from_ids",
+  "status": "passed",
+  "output": "/scratch1/mgunasek/ee451-katherine-pilot/runs/reward_ids_seed0_20261113T020808Z_a296ed95",
+  "resolved_config": {
+    "schema_version": 1,
+    "epochs": 1,
+    "training_seed": 0,
+    "budget": 200,
+    "save_checkpoints": true,
+    "reward": {
+      "name": "distilbert/distilbert-base-uncased",
+      "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+      "max_seq_length": 256,
+      "reply_token_cap": 128,
+      "microbatch_pairs": 8,
+      "effective_batch_pairs": 32,
+      "lr": 2e-05,
+      "precision": "float32",
+      "optimizer": "AdamW defaults (weight_decay=0.01, betas=[0.9,0.999], eps=1e-8)"
+    },
+    "inputs": {
+      "pool_ids": "runs/reproduce_seed0_20261110T020718Z_27763ad0/pool_ids.json",
+      "validation_ids": "runs/reproduce_seed0_20261110T020718Z_27763ad0/validation_ids.json",
+      "selected_ids": {
+        "random": "runs/reproduce_seed0_20261110T020718Z_27763ad0/random_selected_ids.json",
+        "kcenter": "runs/reproduce_seed0_20261110T020718Z_27763ad0/kcenter_selected_ids.json"
+      }
+    }
+  },
+  "resolved_config_sha256": "30a662e2fd2f31728e8e9c443104274feeff1a312e42b0822e2fa809c6e435aa",
+  "config_file_sha256": "0b84f6d5e2d991587e30ef526e1a2688822e8354baf0b6fb95cf4a72839e13ba",
+  "source_sha256": {
+    "scripts/reward_from_ids.py": "ac422d1a7c42c3d770e1fc42d5bb8d78f86ea15bd213c9912fcdba52741d8d63",
+    "scripts/reward_inputs.py": "0e4ab6317b0d1491b52489fc0db8c714b52d7398c1f6f037e54b656ebd83d047",
+    "scripts/carc_pilot.py": "a103ed9bc1ca191d3cdc14ca8cce856db0a4a9e851800b5907d68eadc9a8f199",
+    "scripts/carc_profile.py": "f5dc7ee76d1b6bbe2c332875f0df707085d2621ff61e23419f78d3954b9675af",
+    "src/reward.py": "d01e99f95acf006005ccd5917bb44905abec4cf861f5dd419e0e4a4b472a3388"
+  },
+  "git": {
+    "returncode": 0,
+    "stdout": "7e71ae983a47e0cc08ff69805225529458a615b1",
+    "stderr": ""
+  },
+  "git_status": {
+    "returncode": 0,
+    "stdout": "?? configs/requirements-carc-resolved.lock.txt\n?? results/",
+    "stderr": ""
+  },
+  "packages": {
+    "torch": "2.14.1+cu126",
+    "numpy": "1.26.4",
+    "transformers": "4.46.3",
+    "sentence-transformers": "3.3.1",
+    "datasets": "3.1.0",
+    "huggingface-hub": "0.26.2",
+    "tokenizers": "0.20.3",
+    "safetensors": "0.8.0",
+    "pyarrow": "17.0.0"
+  },
+  "python": "3.11.18 (main, Oct 26 2026, 11:35:17) [GCC 15.3.0]",
+  "hostname": "e21-03.hpc.usc.edu",
+  "slurm_job": "14068858",
+  "slurm_cpus": "2",
+  "gpu": "Tesla P100-PCIE-16GB",
+  "pytorch_cuda": "12.6",
+  "gpu_memory_bytes": 17059545088,
+  "deterministic_algorithms": false,
+  "tf32": false,
+  "test_set_evaluated": false,
+  "results": {
+    "random": {
+      "train_pairs": 200,
+      "validation_pairs": 1000,
+      "history": [
+        {
+          "epoch": 0,
+          "acc": 0.48500001430511475,
+          "loss": 0.6956383585929871
+        },
+        {
+          "epoch": 1,
+          "train_loss_original_micro_mean": 0.6970612955093384,
+          "train_loss_pair_weighted": 0.6970612955093384,
+          "optimizer_steps": 7,
+          "acc": 0.5070000290870667,
+          "loss": 0.6925278902053833
+        }
+      ],
+      "best_validation_epoch": {
+        "epoch": 1,
+        "acc": 0.5070000290870667,
+        "loss": 0.6925278902053833
+      },
+      "initial_head_sha256": "7bc05ba268e6b43bebeaef726053f4631cfe2dff99e4975dfe17494215f63d87",
+      "optimizer_steps": 7,
+      "checkpoint_saved": true,
+      "checkpoint": {
+        "state_dict": "random_best.pt",
+        "state_dict_sha256": "a23fd3e00ef06ff28a466efa775c97b3ca70ddd27788e4f1f18bd037842c2456",
+        "reward": {
+          "name": "distilbert/distilbert-base-uncased",
+          "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+          "max_seq_length": 256,
+          "reply_token_cap": 128,
+          "microbatch_pairs": 8,
+          "effective_batch_pairs": 32,
+          "lr": 2e-05,
+          "precision": "float32",
+          "optimizer": "AdamW defaults (weight_decay=0.01, betas=[0.9,0.999], eps=1e-8)"
+        },
+        "training_seed": 0,
+        "checkpoint_policy": "lowest validation loss among trained epochs",
+        "best_validation_epoch": {
+          "epoch": 1,
+          "acc": 0.5070000290870667,
+          "loss": 0.6925278902053833
+        },
+        "selected_ids_sha256": "33add80931b9dbc400b43b9d76d4b66d7740c0dfd94b987053757f4617d1404e",
+        "ordered_pool_ids_sha256": "2d678ae9ecacb7072a9d5dabde568eebc9810e59a7d60bf56ab395b62ab1fc19",
+        "ordered_validation_ids_sha256": "ba84d5ccc3bb626e5b29dbfdc5dd259732e80b77a7b38a18a0d61ec138d0636b",
+        "resolved_config_sha256": "30a662e2fd2f31728e8e9c443104274feeff1a312e42b0822e2fa809c6e435aa"
+      },
+      "training_seconds": 7.489438453689218,
+      "validation_seconds": 17.502316277474165
+    },
+    "kcenter": {
+      "train_pairs": 200,
+      "validation_pairs": 1000,
+      "history": [
+        {
+          "epoch": 0,
+          "acc": 0.48500001430511475,
+          "loss": 0.6956383585929871
+        },
+        {
+          "epoch": 1,
+          "train_loss_original_micro_mean": 0.6927939200401306,
+          "train_loss_pair_weighted": 0.6927939200401306,
+          "optimizer_steps": 7,
+          "acc": 0.4830000102519989,
+          "loss": 0.6946240663528442
+        }
+      ],
+      "best_validation_epoch": {
+        "epoch": 1,
+        "acc": 0.4830000102519989,
+        "loss": 0.6946240663528442
+      },
+      "initial_head_sha256": "7bc05ba268e6b43bebeaef726053f4631cfe2dff99e4975dfe17494215f63d87",
+      "optimizer_steps": 7,
+      "checkpoint_saved": true,
+      "checkpoint": {
+        "state_dict": "kcenter_best.pt",
+        "state_dict_sha256": "7f037f71e27ec44377e280bab08c12728a2e3efdf986b1e207a98e7e4a90c330",
+        "reward": {
+          "name": "distilbert/distilbert-base-uncased",
+          "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+          "max_seq_length": 256,
+          "reply_token_cap": 128,
+          "microbatch_pairs": 8,
+          "effective_batch_pairs": 32,
+          "lr": 2e-05,
+          "precision": "float32",
+          "optimizer": "AdamW defaults (weight_decay=0.01, betas=[0.9,0.999], eps=1e-8)"
+        },
+        "training_seed": 0,
+        "checkpoint_policy": "lowest validation loss among trained epochs",
+        "best_validation_epoch": {
+          "epoch": 1,
+          "acc": 0.4830000102519989,
+          "loss": 0.6946240663528442
+        },
+        "selected_ids_sha256": "a949b49c6eb9302f7a5d34bd80a7b7cde888bc16cf41f4a4c474186842f43483",
+        "ordered_pool_ids_sha256": "2d678ae9ecacb7072a9d5dabde568eebc9810e59a7d60bf56ab395b62ab1fc19",
+        "ordered_validation_ids_sha256": "ba84d5ccc3bb626e5b29dbfdc5dd259732e80b77a7b38a18a0d61ec138d0636b",
+        "resolved_config_sha256": "30a662e2fd2f31728e8e9c443104274feeff1a312e42b0822e2fa809c6e435aa"
+      },
+      "training_seconds": 4.70994882658124,
+      "validation_seconds": 14.224403229542077
+    }
+  },
+  "notes": [
+    "External selections are consumed as supplied; selection/embedding cost is not measured here.",
+    "Model initialization, training, validation and checkpoint writes reuse carc_pilot.train_one.",
+    "AdamW defaults and evaluation batches of 16 pairs are fixed by the reviewed source.",
+    "Wall time starts before input validation; excludes imports and initial GPU/setup checks.",
+    "Checkpoint selection is lowest validation loss among trained epochs; epoch 0 is diagnostic.",
+    "This runner does not provide interrupted-training resume or final test evaluation."
+  ],
+  "N": 2000,
+  "k": 200,
+  "validation_pairs": 1000,
+  "methods": [
+    "random",
+    "kcenter"
+  ],
+  "input_file_sha256": {
+    "pool_ids": "466d5c53608ff39b2b39c30c3aaa7f4583dc3d2eec0f969fe9c6d885d839945e",
+    "validation_ids": "3e37941a5dfdbd3356c60f8d8568a51eebd07853ba193aa9393249e57637cbdd",
+    "random_selected_ids": "fa727d8acb83c98c38718cc06e1787ead549bb716444b7b775f156dfc83a3dfe",
+    "kcenter_selected_ids": "205ad232e04c92b73372bed1b556b892f873988f6f8df3e008b5a18b8770d927"
+  },
+  "ordered_pool_ids_sha256": "2d678ae9ecacb7072a9d5dabde568eebc9810e59a7d60bf56ab395b62ab1fc19",
+  "ordered_validation_ids_sha256": "ba84d5ccc3bb626e5b29dbfdc5dd259732e80b77a7b38a18a0d61ec138d0636b",
+  "pool_content_sha256": "7011c7890ea20a0bdb0c55e2c61ae98bf80b43e1562adc29acb690fc9f6fb160",
+  "validation_content_sha256": "9920299a31bc805ee509afa9b336d31f58fa0f665bed78124ba070f064b341ec",
+  "prepared_manifest_sha256": "42bb3107f75b4348c7b161ada9a21c83bc50bbc277136fe6a3bcd97b1315dc6c",
+  "prepared_file_sha256": {
+    "train.jsonl": "d96c93c0705363dbdf3b425a327e2c1659f061e3d708c7cc4bdffb4ec4b5f691",
+    "val.jsonl": "f297c2c0d6568f329f426a9fae46bf07a75610aa31700803f605c9a94a65a8b1"
+  },
+  "input_paths": {
+    "pool_ids": "/scratch1/mgunasek/ee451-katherine-pilot/runs/reproduce_seed0_20261110T020718Z_27763ad0/pool_ids.json",
+    "validation_ids": "/scratch1/mgunasek/ee451-katherine-pilot/runs/reproduce_seed0_20261110T020718Z_27763ad0/validation_ids.json",
+    "selected_ids": {
+      "random": "/scratch1/mgunasek/ee451-katherine-pilot/runs/reproduce_seed0_20261110T020718Z_27763ad0/random_selected_ids.json",
+      "kcenter": "/scratch1/mgunasek/ee451-katherine-pilot/runs/reproduce_seed0_20261110T020718Z_27763ad0/kcenter_selected_ids.json"
+    }
+  },
+  "order_policy": "Preserve each supplied ordered ID list; no sorting or resampling.",
+  "total_run_wall_seconds": 78.33095278963447,
+  "stages": [
+    {
+      "stage": "read_pool_and_validation",
+      "status": "ok",
+      "seconds": 2.218468189239502,
+      "process_peak_rss_mib_so_far": 539.171875
+    },
+    {
+      "stage": "reward_import_tokenizer",
+      "status": "ok",
+      "seconds": 3.7921529142186046,
+      "process_peak_rss_mib_so_far": 569.21484375
+    },
+    {
+      "stage": "tokenize_validation",
+      "status": "ok",
+      "seconds": 1.6582323061302304,
+      "process_peak_rss_mib_so_far": 578.81640625
+    },
+    {
+      "stage": "random/tokenize_training",
+      "status": "ok",
+      "seconds": 0.32887785136699677,
+      "process_peak_rss_mib_so_far": 580.8671875
+    },
+    {
+      "stage": "random/model_and_optimizer",
+      "status": "ok",
+      "seconds": 20.494578341022134,
+      "process_peak_rss_mib_so_far": 1005.07421875,
+      "gpu_peak_allocated_mib": 254.24169921875,
+      "gpu_peak_reserved_mib": 272.0
+    },
+    {
+      "stage": "random/validation_initial",
+      "status": "ok",
+      "seconds": 10.38349931128323,
+      "process_peak_rss_mib_so_far": 1092.97265625,
+      "gpu_peak_allocated_mib": 534.4921875,
+      "gpu_peak_reserved_mib": 728.0
+    },
+    {
+      "stage": "random/training_epoch_1",
+      "status": "ok",
+      "seconds": 7.489438453689218,
+      "process_peak_rss_mib_so_far": 1270.70703125,
+      "gpu_peak_allocated_mib": 2342.8310546875,
+      "gpu_peak_reserved_mib": 2444.0
+    },
+    {
+      "stage": "random/validation_epoch_1",
+      "status": "ok",
+      "seconds": 7.118816966190934,
+      "process_peak_rss_mib_so_far": 1270.796875,
+      "gpu_peak_allocated_mib": 1333.42138671875,
+      "gpu_peak_reserved_mib": 2636.0
+    },
+    {
+      "stage": "random/checkpoint_epoch_1",
+      "status": "ok",
+      "seconds": 0.42201335448771715,
+      "process_peak_rss_mib_so_far": 1360.546875,
+      "gpu_peak_allocated_mib": 1061.2958984375,
+      "gpu_peak_reserved_mib": 2636.0
+    },
+    {
+      "stage": "kcenter/tokenize_training",
+      "status": "ok",
+      "seconds": 0.4296943051740527,
+      "process_peak_rss_mib_so_far": 1360.546875
+    },
+    {
+      "stage": "kcenter/model_and_optimizer",
+      "status": "ok",
+      "seconds": 0.19840423669666052,
+      "process_peak_rss_mib_so_far": 1526.01953125,
+      "gpu_peak_allocated_mib": 270.24169921875,
+      "gpu_peak_reserved_mib": 288.0
+    },
+    {
+      "stage": "kcenter/validation_initial",
+      "status": "ok",
+      "seconds": 7.119241072796285,
+      "process_peak_rss_mib_so_far": 1526.01953125,
+      "gpu_peak_allocated_mib": 542.3671875,
+      "gpu_peak_reserved_mib": 648.0
+    },
+    {
+      "stage": "kcenter/training_epoch_1",
+      "status": "ok",
+      "seconds": 4.70994882658124,
+      "process_peak_rss_mib_so_far": 1526.01953125,
+      "gpu_peak_allocated_mib": 2339.3310546875,
+      "gpu_peak_reserved_mib": 2518.0
+    },
+    {
+      "stage": "kcenter/validation_epoch_1",
+      "status": "ok",
+      "seconds": 7.105162156745791,
+      "process_peak_rss_mib_so_far": 1526.01953125,
+      "gpu_peak_allocated_mib": 1329.67138671875,
+      "gpu_peak_reserved_mib": 2710.0
+    },
+    {
+      "stage": "kcenter/checkpoint_epoch_1",
+      "status": "ok",
+      "seconds": 0.650024488568306,
+      "process_peak_rss_mib_so_far": 1526.01953125,
+      "gpu_peak_allocated_mib": 1057.5458984375,
+      "gpu_peak_reserved_mib": 2710.0
+    }
+  ],
+  "sum_stage_seconds": 74.1185527741909
+}

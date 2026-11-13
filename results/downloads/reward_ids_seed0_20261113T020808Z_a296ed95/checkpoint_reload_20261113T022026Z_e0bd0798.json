@@ -1,0 +1,149 @@
+{
+  "status": "passed",
+  "run_dir": "/scratch1/mgunasek/ee451-katherine-pilot/runs/reward_ids_seed0_20261113T020808Z_a296ed95",
+  "test_set_evaluated": false,
+  "hostname": "e21-03.hpc.usc.edu",
+  "slurm_job": "14068858",
+  "gpu": "Tesla P100-PCIE-16GB",
+  "packages": {
+    "torch": "2.14.1+cu126",
+    "numpy": "1.26.4",
+    "transformers": "4.46.3",
+    "sentence-transformers": "3.3.1",
+    "datasets": "3.1.0",
+    "huggingface-hub": "0.26.2",
+    "tokenizers": "0.20.3",
+    "safetensors": "0.8.0",
+    "pyarrow": "17.0.0"
+  },
+  "git": {
+    "returncode": 0,
+    "stdout": "7e71ae983a47e0cc08ff69805225529458a615b1",
+    "stderr": ""
+  },
+  "verifier_sha256": "0157ac8c558d9bce7425339715abfa1af16521949255cc3ebddb3fec64a2f3d3",
+  "results": {
+    "random": {
+      "expected": {
+        "epoch": 1,
+        "acc": 0.5070000290870667,
+        "loss": 0.6925278902053833
+      },
+      "reloaded": {
+        "acc": 0.5070000290870667,
+        "loss": 0.6925278902053833
+      },
+      "accuracy_absolute_difference": 0.0,
+      "loss_absolute_difference": 0.0,
+      "accuracy_atol": 1e-07,
+      "loss_atol": 1e-06,
+      "passed": true,
+      "training_token_lengths": {
+        "pairs": 200,
+        "sequences": 400,
+        "min_tokens": 20,
+        "max_tokens": 256,
+        "configured_token_limit": 256
+      },
+      "checkpoint_sha256": "a23fd3e00ef06ff28a466efa775c97b3ca70ddd27788e4f1f18bd037842c2456"
+    },
+    "kcenter": {
+      "expected": {
+        "epoch": 1,
+        "acc": 0.4830000102519989,
+        "loss": 0.6946240663528442
+      },
+      "reloaded": {
+        "acc": 0.4830000102519989,
+        "loss": 0.6946240663528442
+      },
+      "accuracy_absolute_difference": 0.0,
+      "loss_absolute_difference": 0.0,
+      "accuracy_atol": 1e-07,
+      "loss_atol": 1e-06,
+      "passed": true,
+      "training_token_lengths": {
+        "pairs": 200,
+        "sequences": 400,
+        "min_tokens": 25,
+        "max_tokens": 256,
+        "configured_token_limit": 256
+      },
+      "checkpoint_sha256": "7f037f71e27ec44377e280bab08c12728a2e3efdf986b1e207a98e7e4a90c330"
+    }
+  },
+  "training_summary_sha256": "448d776f0e2b5a7c18df423494a517b690ad8b1d5506db0b192265d47f08371e",
+  "resolved_config_sha256": "30a662e2fd2f31728e8e9c443104274feeff1a312e42b0822e2fa809c6e435aa",
+  "validation_content_sha256": "9920299a31bc805ee509afa9b336d31f58fa0f665bed78124ba070f064b341ec",
+  "validation_token_lengths": {
+    "pairs": 1000,
+    "sequences": 2000,
+    "min_tokens": 12,
+    "max_tokens": 256,
+    "configured_token_limit": 256
+  },
+  "stages": [
+    {
+      "stage": "verify_bundle_and_inputs",
+      "status": "ok",
+      "seconds": 3.292694941163063,
+      "process_peak_rss_mib_so_far": 538.88671875
+    },
+    {
+      "stage": "reward_import_tokenizer",
+      "status": "ok",
+      "seconds": 0.5902173137292266,
+      "process_peak_rss_mib_so_far": 567.90625
+    },
+    {
+      "stage": "tokenize_validation_and_check_lengths",
+      "status": "ok",
+      "seconds": 1.3393667014315724,
+      "process_peak_rss_mib_so_far": 577.35546875
+    },
+    {
+      "stage": "random/check_training_token_lengths",
+      "status": "ok",
+      "seconds": 0.25816728454083204,
+      "process_peak_rss_mib_so_far": 579.52734375
+    },
+    {
+      "stage": "random/reload_checkpoint",
+      "status": "ok",
+      "seconds": 0.9889412121847272,
+      "process_peak_rss_mib_so_far": 1254.51953125,
+      "gpu_peak_allocated_mib": 254.24169921875,
+      "gpu_peak_reserved_mib": 272.0
+    },
+    {
+      "stage": "random/evaluate_validation",
+      "status": "ok",
+      "seconds": 7.187968919984996,
+      "process_peak_rss_mib_so_far": 1254.51953125,
+      "gpu_peak_allocated_mib": 534.4921875,
+      "gpu_peak_reserved_mib": 728.0
+    },
+    {
+      "stage": "kcenter/check_training_token_lengths",
+      "status": "ok",
+      "seconds": 0.3503068629652262,
+      "process_peak_rss_mib_so_far": 1254.51953125
+    },
+    {
+      "stage": "kcenter/reload_checkpoint",
+      "status": "ok",
+      "seconds": 0.35972621385008097,
+      "process_peak_rss_mib_so_far": 1462.76171875,
+      "gpu_peak_allocated_mib": 262.74169921875,
+      "gpu_peak_reserved_mib": 296.0
+    },
+    {
+      "stage": "kcenter/evaluate_validation",
+      "status": "ok",
+      "seconds": 7.071349628269672,
+      "process_peak_rss_mib_so_far": 1462.76171875,
+      "gpu_peak_allocated_mib": 534.8671875,
+      "gpu_peak_reserved_mib": 656.0
+    }
+  ]
+}
