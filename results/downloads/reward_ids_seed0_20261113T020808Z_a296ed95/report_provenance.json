@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "run_id": "reward_ids_seed0_20261113T020808Z_a296ed95",
+  "source_run": "/scratch1/mgunasek/ee451-katherine-pilot/runs/reward_ids_seed0_20261113T020808Z_a296ed95",
+  "summary_sha256": "51f18ab1c0f6ebfdc945e2ffd8310ba566fb7471df4c81262c4401742905bde9",
+  "summary_lf_sha256": "448d776f0e2b5a7c18df423494a517b690ad8b1d5506db0b192265d47f08371e",
+  "summary_content_sha256": "b74fd5b4f6b81ee91d264c883f5c400e67cf618540b24e631bf40c17540f71dd",
+  "reload_report_sha256": "27628a910ce47c944cad7bcd0ca9f068e76f37ccb52306b9d420b52187868985",
+  "reporter_sha256": "79af02bc7de4df0ea26b020c28977b6e865a8af6b841bd1636ff7a23c213f526",
+  "resolved_config_sha256": "30a662e2fd2f31728e8e9c443104274feeff1a312e42b0822e2fa809c6e435aa",
+  "checkpoint_reload_verified": {
+    "random": true,
+    "kcenter": true
+  },
+  "test_set_evaluated": false,
+  "files": [
+    "reward_metrics.csv",
+    "learning_curves.csv",
+    "stages.csv",
+    "report_provenance.json",
+    "validation_curves.png",
+    "validation_curves.svg",
+    "training_validation_time.png",
+    "training_validation_time.svg"
+  ],
+  "notes": [
+    "Integration pilot; one seed and a small selected subset.",
+    "Best trained epoch is selected by validation loss; epoch 0 is diagnostic.",
+    "Timings describe one ordered run and include first-use effects.",
+    "No test result, uncertainty across seeds, or full-data quality comparison is available."
+  ],
+  "formatting_fix": {
+    "original_reporter_sha256": "fa0c94c933f5ea92cfc54a23ccb53939f549fd415a2e19d293f3c509b9f76a2f",
+    "change": "LF CSV line endings; removed SVG trailing spaces"
+  },
+  "report_text_format": "LF line endings; SVG trailing spaces removed"
+}

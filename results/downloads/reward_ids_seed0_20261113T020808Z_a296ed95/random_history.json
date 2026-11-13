@@ -1,0 +1,15 @@
+[
+  {
+    "epoch": 0,
+    "acc": 0.48500001430511475,
+    "loss": 0.6956383585929871
+  },
+  {
+    "epoch": 1,
+    "train_loss_original_micro_mean": 0.6970612955093384,
+    "train_loss_pair_weighted": 0.6970612955093384,
+    "optimizer_steps": 7,
+    "acc": 0.5070000290870667,
+    "loss": 0.6925278902053833
+  }
+]
