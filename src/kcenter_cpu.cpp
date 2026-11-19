@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -112,11 +113,19 @@ int main(int argc, char** argv) {
 
     std::vector<float> X(N * dim);
 
-    // Deterministic float32 values; no random-number library needed.
-    for (size_t i = 0; i < N; ++i) {
-        for (size_t j = 0; j < dim; ++j) {
-            X[i * dim + j] =
-                static_cast<float>(((i * 131 + j * 17) % 1009)) / 1009.0f;
+    if (argc > 4) {
+        std::ifstream file(argv[4], std::ios::binary);
+        if (!file.read(reinterpret_cast<char*>(X.data()),
+                       static_cast<std::streamsize>(X.size() * sizeof(float)))) {
+            std::cerr << "Failed to read embedding file\\n";
+            return 1;
+        }
+    } else {
+        for (size_t i = 0; i < N; ++i) {
+            for (size_t j = 0; j < dim; ++j) {
+                X[i * dim + j] =
+                    static_cast<float>(((i * 131 + j * 17) % 1009)) / 1009.0f;
+            }
         }
     }
 

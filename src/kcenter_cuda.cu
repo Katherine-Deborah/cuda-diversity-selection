@@ -1,3 +1,4 @@
+#include <fstream>
 #include <cuda_runtime.h>
 #include <iostream>
 #include <vector>
@@ -245,14 +246,23 @@ int main(int argc, char** argv) {
 
     std::vector<float> X(static_cast<size_t>(N) * dim);
 
-    // Generate the same input data as the CPU benchmark.
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < dim; ++j) {
-            X[static_cast<size_t>(i) * dim + j] =
-                static_cast<float>(
-                    ((static_cast<size_t>(i) * 131 +
-                      static_cast<size_t>(j) * 17) % 1009)
-                ) / 1009.0f;
+    if (argc > 4) {
+        std::ifstream file(argv[4], std::ios::binary);
+        if (!file.read(reinterpret_cast<char*>(X.data()),
+                       static_cast<std::streamsize>(X.size() * sizeof(float)))) {
+            std::cerr << "Failed to read embedding file\\n";
+            return 1;
+        }
+    } else {
+        // Preserve deterministic synthetic benchmarks.
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < dim; ++j) {
+                X[static_cast<size_t>(i) * dim + j] =
+                    static_cast<float>(
+                        ((static_cast<size_t>(i) * 131 +
+                          static_cast<size_t>(j) * 17) % 1009)
+                    ) / 1009.0f;
+            }
         }
     }
 
