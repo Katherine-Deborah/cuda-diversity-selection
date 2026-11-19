@@ -35,3 +35,25 @@ A separate validated CUDA run with --fmad=false took 0.294671 seconds for 20000 
 
 - Validate using the project's actual embedding data.
 - Perform additional benchmarks using the validated CUDA configuration.
+
+## Real Embedding Validation
+
+Dataset: `data/pilot_features.npy` (2000 samples, 1152 float32 features).
+Converted to a raw float32 binary file for CPU/CUDA input.
+
+Both implementations were compiled with optimization enabled.
+CUDA used `--fmad=false` for consistent floating-point behavior.
+
+Results from one real-data run on USC CARC:
+
+| Implementation | Execution time |
+|---|---:|
+| CPU | 0.200636 s |
+| CUDA | 0.232887 s |
+
+Correctness: PASS — CPU and CUDA selected the same 100 centers
+in exactly the same order.
+
+At N=2000, GPU overhead exceeds the benefit of parallelization.
+The larger synthetic benchmarks demonstrate GPU speedups of
+4.25x at N=10000 and 6.39x at N=20000.
