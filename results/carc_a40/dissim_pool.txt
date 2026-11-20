@@ -1,0 +1,16 @@
+N=20000 K=2000 D=384  subsets=5321/5497/2744/6438  OpenMP threads=8
+max |q_gpu - q_cpu| = 7.15e-07
+  check CPU 1 thr  PASS  (picks 2000, quotas match: yes, picks below top-half threshold: 0)
+  check CPU OpenMP PASS  (picks 2000, quotas match: yes, picks below top-half threshold: 0)
+  check GPU        PASS  (picks 2000, quotas match: yes, picks below top-half threshold: 0)
+  GPU repeat with same seed identical: yes
+  GPU different seed differs: yes
+  (sampling uses a different RNG than Python/CPU, so the sampled sets differ by design; the top-half sets are what must agree)
+
+median of 15 runs (ms):
+  CPU, 1 thread                7.18
+  CPU, OpenMP  8 threads       2.07   (distance pass only is parallel)
+  GPU, data resident           0.27   (of which distance kernel 0.11)
+  GPU, end to end              4.05   (copy A,B,subset in + select + K indices out)
+  speedup vs 1 thread: resident 26.4x, end-to-end 1.8x;  vs OpenMP: resident 7.6x, end-to-end 0.5x
+CSV,20000,2000,7.177,2.068,0.113,0.272,4.050

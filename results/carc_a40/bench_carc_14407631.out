@@ -1,0 +1,126 @@
+== machine
+GPU 0: NVIDIA A40 (UUID: GPU-3a067b83-9e6b-0685-b881-eec11a9b16c2)
+CPU(s):              32
+Model name:          AMD EPYC 7313 16-Core Processor
+Cuda compilation tools, release 12.6, V12.6.85
+Build cuda_12.6.r12.6/compiler.35059454_0
+== k sweep (N=20000)
+N=20000 k=1 picks IDENTICAL
+N=20000 k=100 picks IDENTICAL
+N=20000 k=500 picks IDENTICAL
+N=20000 k=1000 picks IDENTICAL
+N=20000 k=2000 picks IDENTICAL
+== N sweep (k=100)
+N=2000 k=100 picks IDENTICAL
+N=5000 k=100 picks IDENTICAL
+N=10000 k=100 picks IDENTICAL
+N=15000 k=100 picks IDENTICAL
+== dissimilar-half kernel, pool (N=20000, k=2000)
+N=20000 K=2000 D=384  subsets=5321/5497/2744/6438  OpenMP threads=8
+max |q_gpu - q_cpu| = 7.15e-07
+  check CPU 1 thr  PASS  (picks 2000, quotas match: yes, picks below top-half threshold: 0)
+  check CPU OpenMP PASS  (picks 2000, quotas match: yes, picks below top-half threshold: 0)
+  check GPU        PASS  (picks 2000, quotas match: yes, picks below top-half threshold: 0)
+  GPU repeat with same seed identical: yes
+  GPU different seed differs: yes
+  (sampling uses a different RNG than Python/CPU, so the sampled sets differ by design; the top-half sets are what must agree)
+
+median of 15 runs (ms):
+  CPU, 1 thread                7.18
+  CPU, OpenMP  8 threads       2.07   (distance pass only is parallel)
+  GPU, data resident           0.27   (of which distance kernel 0.11)
+  GPU, end to end              4.05   (copy A,B,subset in + select + K indices out)
+  speedup vs 1 thread: resident 26.4x, end-to-end 1.8x;  vs OpenMP: resident 7.6x, end-to-end 0.5x
+CSV,20000,2000,7.177,2.068,0.113,0.272,4.050
+DONE
+impl,N,k,rep,seconds
+cpu,20000,1,1,0.0198116
+cuda,20000,1,1,0.279055
+cpu,20000,1,2,0.0198033
+cuda,20000,1,2,0.182845
+cpu,20000,1,3,0.019146
+cuda,20000,1,3,0.169347
+cpu,20000,1,4,0.0191371
+cuda,20000,1,4,0.170325
+cpu,20000,1,5,0.0191243
+cuda,20000,1,5,0.170979
+cpu,20000,100,1,1.99236
+cuda,20000,100,1,0.223604
+cpu,20000,100,2,1.99025
+cuda,20000,100,2,0.226354
+cpu,20000,100,3,1.9934
+cuda,20000,100,3,0.220665
+cpu,20000,100,4,1.99077
+cuda,20000,100,4,0.225606
+cpu,20000,100,5,1.9903
+cuda,20000,100,5,0.22508
+cpu,20000,500,1,9.87152
+cuda,20000,500,1,0.329716
+cpu,20000,500,2,9.87176
+cuda,20000,500,2,0.345454
+cpu,20000,500,3,9.87557
+cuda,20000,500,3,0.344766
+cpu,20000,500,4,9.87641
+cuda,20000,500,4,0.327455
+cpu,20000,500,5,9.8785
+cuda,20000,500,5,0.339874
+cpu,20000,1000,1,19.5507
+cuda,20000,1000,1,0.564647
+cpu,20000,1000,2,19.5417
+cuda,20000,1000,2,0.567056
+cpu,20000,1000,3,19.546
+cuda,20000,1000,3,0.592256
+cpu,20000,1000,4,19.5398
+cuda,20000,1000,4,0.563962
+cpu,20000,1000,5,19.5417
+cuda,20000,1000,5,0.580259
+cpu,20000,2000,1,38.2364
+cuda,20000,2000,1,0.881162
+cpu,20000,2000,2,38.2333
+cuda,20000,2000,2,0.897527
+cpu,20000,2000,3,38.2259
+cuda,20000,2000,3,0.902994
+cpu,20000,2000,4,38.2562
+cuda,20000,2000,4,0.892003
+cpu,20000,2000,5,38.2526
+cuda,20000,2000,5,0.864436
+cpu,2000,100,1,0.19449
+cuda,2000,100,1,0.187512
+cpu,2000,100,2,0.19468
+cuda,2000,100,2,0.190578
+cpu,2000,100,3,0.194396
+cuda,2000,100,3,0.181579
+cpu,2000,100,4,0.194364
+cuda,2000,100,4,0.186696
+cpu,2000,100,5,0.194535
+cuda,2000,100,5,0.174405
+cpu,5000,100,1,0.49332
+cuda,5000,100,1,0.197883
+cpu,5000,100,2,0.493438
+cuda,5000,100,2,0.190381
+cpu,5000,100,3,0.493391
+cuda,5000,100,3,0.197398
+cpu,5000,100,4,0.493304
+cuda,5000,100,4,0.201535
+cpu,5000,100,5,0.493444
+cuda,5000,100,5,0.1958
+cpu,10000,100,1,0.992831
+cuda,10000,100,1,0.201053
+cpu,10000,100,2,0.992369
+cuda,10000,100,2,0.20631
+cpu,10000,100,3,0.992897
+cuda,10000,100,3,0.201815
+cpu,10000,100,4,0.992414
+cuda,10000,100,4,0.201997
+cpu,10000,100,5,0.993026
+cuda,10000,100,5,0.206375
+cpu,15000,100,1,1.4937
+cuda,15000,100,1,0.205893
+cpu,15000,100,2,1.49164
+cuda,15000,100,2,0.210755
+cpu,15000,100,3,1.49125
+cuda,15000,100,3,0.215786
+cpu,15000,100,4,1.49264
+cuda,15000,100,4,0.217601
+cpu,15000,100,5,1.49081
+cuda,15000,100,5,0.196699
